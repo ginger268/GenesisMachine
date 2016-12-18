@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# isomount
+#
+# chkconfig: - 85 15
+# description: Mount the ISOs as required
+#
+# processname: iso
+#
+ISO_HOME="/samba/media"
+start() {
+	echo "Checking CRCs and Mounting ISOs"
+	
+	IFS=$'\n';
+	for iso in $(find /samba/media -iname '*.iso');
+	do
+		pushd $(dirname $iso)
+#        	sha1sum --status -c "$iso.sha1"
+#	        if [ $? -eq 0 ]
+		if [ 1 -eq 1 ]
+        	then
+            		folder=${iso%.*}
+			echo "Folder name is $folder"
+			echo "ISO is $iso"
+        	        mkdir -p $folder
+                	mount -o loop,mode=0555,dmode=0555 $iso $folder
+	        else
+        	    	echo "SHA1 did not match for $iso"
+	        fi
+		popd
+	done
+	echo "Complete"
+}
+
+stop() {
+	echo "Unmounting ISOs"
+	IFS=$'\n';
+	for iso in $(find /samba/media -iname '*.iso');
+	do
+            	folder=${iso%.*}
+                umount $folder
+		rmdir $folder
+	done
+}
+
+restart() {
+	stop
+	start
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	restart)
+		restart
+		;;
+	*)
+		echo "Usage: isomount {start|stop|restart}"
+		exit 1
+esac
+
+exit 0

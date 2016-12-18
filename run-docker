@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Creates and runs a local container according to "target" image
+#
+docker run -d -p 8080:8080 -v /samba/media:/media --restart=always --name build-box --add-host gitbook.genesis.mil.nz:192.168.150.169 -t nzdf/build-box

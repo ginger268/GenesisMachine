@@ -1,0 +1,25 @@
+####
+# Should be able to include alternative environments here as well I assume.
+# Just rinse + repeat
+
+# Might need this too in the container
+# The command debconf-get-selections is provided by the package debconf-utils, which you may need to install. #
+####
+
+# Kerberos servers for your realm:
+krb5-config krb5-config/kerberos_servers string podadc1.poda.mil.nz
+
+# Default Kerberos version 5 realm:
+krb5-config krb5-config/default_realm string PODA.MIL.NZ
+
+# Local realm name:
+heimdal-kdc heimdal/realm string PODA.MIL.NZ
+
+# Administrative server for your Kerberos realm:
+krb5-config krb5-config/admin_server string podadc1.poda.mil.nz
+
+# Does DNS contain pointers to your realm's Kerberos Servers?
+krb5-config krb5-config/dns_for_default boolean false
+
+# Add locations of default Kerberos servers to /etc/krb5.conf?
+krb5-config krb5-config/add_servers boolean true

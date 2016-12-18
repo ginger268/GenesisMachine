@@ -1,0 +1,2 @@
+machine gitbook.genesis.mil.nz login jenkins password Password01
+machine 192.168.150.169 login jenkins password Password01
