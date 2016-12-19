@@ -1,6 +1,6 @@
 FROM jenkins:1.651.3
 
-MAINTAINER W1034606 <richard.bremford@nzdf.mil.nz>
+MAINTAINER jamie.thompson@datacom.co.nz
 
 # This creates a full Build machine that will:
 #   - be based on Ubuntu latest
@@ -71,7 +71,7 @@ RUN cd /root/.vagrant.d/gems/gems/vagrant-vsphere*/example_box/ && \
     mkdir /var/vagrant && \
     mv genesis.box /var/vagrant && \
     chown jenkins /var/vagrant/genesis.box
-    
+
 #COPY vagrantvsphere.sh /tmp
 #RUN /tmp/vagrantvsphere.sh
 
@@ -106,7 +106,7 @@ RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 # Configure the local credentials for GitBook access
 COPY netrc /var/jenkins_home/.netrc
 
-# Ignore SSL certificate errors for now.    
+# Ignore SSL certificate errors for now.
 COPY gitconfig /var/jenkins_home/.gitconfig
 
 # Add Jenkins JOBS - MUST be after loading plugins

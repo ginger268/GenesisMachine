@@ -3,5 +3,5 @@
 # Builds a local images according to target given with a specific name
 #
 # NOTE: Due to the lack of any on premises Docker Registry the name is critical
-
-docker build -t "nzdf/build-box" .
+# added sudo to the command
+sudo docker build -t "test/build-box" .
