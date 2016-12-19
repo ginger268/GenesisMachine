@@ -20,7 +20,7 @@
 sudo yum update -y
 
 # 1. Prepare the host platform.
-./preparation-x.sh
+sudo bash ./preparation-x.sh
 
 # 2. Install Docker
 command -v docker >/dev/null && { echo docker installed; } || { echo "docker not found, installing..."; sudo curl -sSL https://get.docker.com/ | sh; sudo chkconfig docker on; sudo service docker start; };
